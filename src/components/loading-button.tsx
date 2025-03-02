@@ -11,7 +11,7 @@ type LoadingButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
 export const LoadingButton = ({ isLoading, ...props }: LoadingButtonProps) => {
   return (
-    <Button disabled={isLoading} className={cn("relative", props.className)}>
+    <Button disabled={isLoading} className={cn("relative overflow-hidden", props.className)}>
       {props.children}
       <span
         className={cn(
