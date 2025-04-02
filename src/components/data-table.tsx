@@ -120,8 +120,8 @@ export function DataTable<TData, TValue>({
             </TableBody>
           </Table>
           {isLoading && (
-            <div className="fixed inset-0 flex items-center justify-center bg-neutral-950/5 z-[9999]">
-              <Loader2 className="size-10 text-primary animate-spin" />
+            <div className="fixed inset-0 flex items-center justify-center bg-neutral-950/20 dark:bg-neutral-950/50 z-[9999]">
+              <Loader2 className="size-10 md:ml-[230px] text-primary animate-spin" />
             </div>
           )}
         </div>

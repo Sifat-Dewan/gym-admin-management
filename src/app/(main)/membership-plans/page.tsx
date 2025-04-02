@@ -28,6 +28,9 @@ const MembershipPlansPage = async ({
           }
         : {}),
     },
+    orderBy: {
+      price: "asc"
+    }
   });
   return (
     <div className="space-y-4">
