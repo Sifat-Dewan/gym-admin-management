@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { PageHeader } from "@/components/page-header";
 import { db } from "@/lib/db";
 import { cn, formatPrice } from "@/lib/utils";
