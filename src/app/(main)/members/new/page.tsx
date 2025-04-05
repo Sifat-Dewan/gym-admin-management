@@ -12,7 +12,7 @@ const NewMemberPage = async () => {
     <div className="space-y-6">
       <PageHeader label="New Member" backButtonUrl="/members" />
       <MemberForm
-        admissionFee={defaultValues?.admissionFee || 500}
+        admissionFee={defaultValues?.admissionFee}
         membershipPlans={membershipPlans}
       />
     </div>

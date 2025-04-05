@@ -33,6 +33,7 @@ export type DropdownMenuItemType = {
   active?: boolean;
   onClick: () => void;
   destructive?: boolean;
+  badge?: { label?: string | number; isPending?: boolean };
 };
 
 export type FullMembershipPlanType = MembershipPlan & {

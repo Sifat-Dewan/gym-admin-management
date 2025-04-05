@@ -20,7 +20,7 @@ export const SearchInput = ({
 }: SearchInputProps) => {
   const [isInitialRender, setIsInitialRender] = useState(true);
   const { setQueryParams } = useQueryParams();
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
   const [value, setValue] = useState("");
   const [debouncedValue] = useDebounceValue(value, 400);
 
@@ -28,8 +28,10 @@ export const SearchInput = ({
     if (isInitialRender) {
       return setIsInitialRender(false);
     }
-    if(!debouncedValue && !searchParams.get("q")) return;
-    setQueryParams({ query: { q: debouncedValue ? debouncedValue : "" } });
+    if (!debouncedValue && !searchParams.get("q")) return;
+    setQueryParams({
+      query: { q: debouncedValue ? debouncedValue : "", page: "" },
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedValue]);
 

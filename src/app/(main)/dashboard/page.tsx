@@ -124,7 +124,7 @@ const DashboardPage = async () => {
   const expensesData = [
     {
       label: "This Month Expense",
-      value: formatPrice(thisMonthRevenue._sum.cost || 0),
+      value: formatPrice(thisMonthExpenses._sum.cost || 0),
     },
     {
       label: "Today's Expense",
@@ -138,16 +138,16 @@ const DashboardPage = async () => {
       <ul className="mt-5 space-y-8">
         <li className="p-5 shadow rounded-lg dark:border">
           <h2 className="font-semibold text-xl">Members</h2>
-          <ul className="mt-3 grid grid-cols-2 gap-6 lg:grid-cols-3">
+          <ul className="mt-3 grid xs:grid-cols-2 gap-6 lg:grid-cols-3">
             {membersData.map(({ label, value }) => (
               <li
                 key={label}
                 className={cn(
-                  "rounded-md border bg-background space-y-2 p-5 shadow"
+                  "rounded-md border bg-background flex flex-col gap-2 p-5 shadow"
                 )}
               >
                 <h3 className="text-lg font-semibold">{label}</h3>
-                <p className="text-2xl font-semibold text-primary">{value}</p>
+                <p className="text-2xl font-semibold text-primary mt-auto">{value}</p>
               </li>
             ))}
           </ul>
@@ -159,11 +159,11 @@ const DashboardPage = async () => {
               <li
                 key={label}
                 className={cn(
-                  "rounded-md border bg-background space-y-2 p-5 shadow"
+                  "rounded-md border bg-background flex flex-col gap-2 p-5 shadow"
                 )}
               >
                 <h3 className="text-lg font-semibold">{label}</h3>
-                <p className="text-2xl font-semibold text-green-500">{value}</p>
+                <p className="text-2xl font-semibold text-green-500 mt-auto">{value}</p>
               </li>
             ))}
           </ul>
@@ -175,11 +175,11 @@ const DashboardPage = async () => {
               <li
                 key={label}
                 className={cn(
-                  "rounded-md border bg-background space-y-2 p-5 shadow"
+                  "rounded-md border bg-background flex flex-col gap-2 p-5 shadow"
                 )}
               >
                 <h3 className="text-lg font-semibold">{label}</h3>
-                <p className="text-2xl font-semibold text-destructive">
+                <p className="text-2xl font-semibold text-destructive mt-auto">
                   {value}
                 </p>
               </li>

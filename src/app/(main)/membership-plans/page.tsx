@@ -28,10 +28,18 @@ const MembershipPlansPage = async ({
           }
         : {}),
     },
+    include: {
+      _count: {
+        select: {
+          members: true,
+        }
+      }
+    },
     orderBy: {
-      price: "asc"
-    }
+      price: "asc",
+    },
   });
+
   return (
     <div className="space-y-4">
       <PageHeader label="Membership Plans" actionUrl="/membership-plans/new" />
