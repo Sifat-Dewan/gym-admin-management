@@ -81,6 +81,7 @@ export const ExpenseForm = ({ expense }: ExpenseFormProps) => {
                   <Input
                     autoFocus={!!!expense}
                     placeholder="Enter the title"
+                    disabled={isPending}
                     {...field}
                   />
                 </FormControl>
@@ -98,6 +99,7 @@ export const ExpenseForm = ({ expense }: ExpenseFormProps) => {
                   <Input
                     type="number"
                     placeholder="Exter the cost"
+                    disabled={isPending}
                     value={field.value || ""}
                     onChange={field.onChange}
                   />

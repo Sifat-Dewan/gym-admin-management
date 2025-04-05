@@ -62,4 +62,4 @@ export const months = [
   "December",
 ] as const;
 
-export const adminEmails = ["antoradria@gmail.com", "antoradria@gmail.com"];
+export const adminEmails = ["antoradria@gmail.com", "ratulislam544388@gmail.com"];

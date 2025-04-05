@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const formatPrice = (price: number) => {
+export const formatPrice = (price: number = 0) => {
   return new Intl.NumberFormat("en-BD", {
     style: "currency",
     currency: "BDT",

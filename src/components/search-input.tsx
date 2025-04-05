@@ -2,11 +2,12 @@
 
 import { useQueryParams } from "@/hooks/use-query-params";
 import { cn } from "@/lib/utils";
+import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDebounceValue } from "usehooks-ts";
-import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { X } from "lucide-react";
+import { Input } from "./ui/input";
+import { useSearchParams } from "next/navigation";
 
 interface SearchInputProps {
   className?: string;
@@ -19,6 +20,7 @@ export const SearchInput = ({
 }: SearchInputProps) => {
   const [isInitialRender, setIsInitialRender] = useState(true);
   const { setQueryParams } = useQueryParams();
+  const searchParams = useSearchParams()
   const [value, setValue] = useState("");
   const [debouncedValue] = useDebounceValue(value, 400);
 
@@ -26,6 +28,7 @@ export const SearchInput = ({
     if (isInitialRender) {
       return setIsInitialRender(false);
     }
+    if(!debouncedValue && !searchParams.get("q")) return;
     setQueryParams({ query: { q: debouncedValue ? debouncedValue : "" } });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedValue]);

@@ -53,79 +53,81 @@ export function DataTable<TData, TValue>({
     },
   });
 
+
   return (
-      <div className="flex flex-col gap-4">
-        <div className="flex items-center gap-5 flex-wrap">
-          {showSearchInput && (
-            <SearchInput placeholder={searchInputPlaceholder} />
-          )}
-          {!!searchParams.size && (
-            <Button
-              onClick={() =>
-                setQueryParams({ query: {}, clearCurrentQuery: true })
-              }
-              variant="outline"
-            >
-              Reset Filers
-            </Button>
-          )}
-        </div>
-        <div className="rounded-md border">
-          <Table>
-            <TableHeader>
-              {table.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => {
-                    return (
-                      <TableHead key={header.id}>
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                      </TableHead>
-                    );
-                  })}
-                </TableRow>
-              ))}
-            </TableHeader>
-            <TableBody>
-              {table.getRowModel().rows?.length ? (
-                table.getRowModel().rows.map((row) => (
-                  <TableRow
-                    key={row.id}
-                    data-state={row.getIsSelected() && "selected"}
-                  >
-                    {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell
-                    colSpan={columns.length}
-                    className="h-24 text-center"
-                  >
-                    No results.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-          {isLoading && (
-            <div className="fixed inset-0 flex items-center justify-center bg-neutral-950/20 dark:bg-neutral-950/50 z-[9999]">
-              <Loader2 className="size-10 md:ml-[230px] text-primary animate-spin" />
-            </div>
-          )}
-        </div>
-        {!!pagesDataCount && <Pagination dataCount={pagesDataCount} />}
+    <div className="flex flex-col gap-4">
+      <div className="flex items-center gap-5 flex-wrap">
+        {showSearchInput && (
+          <SearchInput placeholder={searchInputPlaceholder} />
+        )}
+        {!!searchParams.size && (
+          <Button
+            onClick={() => {
+              setQueryParams({ query: {}, clearCurrentQuery: true });
+              table.setRowSelection({});
+            }}
+            variant="outline"
+          >
+            Reset Filers
+          </Button>
+        )}
       </div>
+      <div className="rounded-md border">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <TableHead key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                    </TableHead>
+                  );
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+        {isLoading && (
+          <div className="fixed inset-0 flex items-center justify-center bg-neutral-950/20 dark:bg-neutral-950/50 z-[9999]">
+            <Loader2 className="size-10 md:ml-[230px] text-primary animate-spin" />
+          </div>
+        )}
+      </div>
+      {!!pagesDataCount && <Pagination dataCount={pagesDataCount} />}
+    </div>
   );
 }
