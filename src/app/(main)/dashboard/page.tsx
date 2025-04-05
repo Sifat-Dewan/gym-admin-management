@@ -153,7 +153,7 @@ const DashboardPage = async () => {
           </ul>
         </li>
         <li className="p-5 shadow rounded-lg dark:border">
-          <h2 className="font-semibold text-xl text-primary">Revenues</h2>
+          <h2 className="font-semibold text-xl">Revenues</h2>
           <ul className="mt-3 grid grid-cols-2 gap-6 lg:grid-cols-3">
             {revenuesData.map(({ label, value }) => (
               <li
