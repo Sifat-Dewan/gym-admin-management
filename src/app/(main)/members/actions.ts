@@ -8,11 +8,11 @@ export const getMembershipStatusCounts = async () => {
     //active
     db.member.count({
       where: {
-        startDate: {
-          lte: startOfToday(),
-        },
         endDate: {
-          gte: endOfToday(),
+          gt: startOfToday(),
+        },
+        startDate: {
+          lt: startOfToday(),
         },
       },
     }),

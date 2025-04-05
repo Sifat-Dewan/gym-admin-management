@@ -7,6 +7,7 @@ import { SearchParamsType, StatusType } from "@/types";
 import { Gender, Prisma } from "@prisma/client";
 import { columns } from "./_components/table/columns";
 import { Metadata } from "next";
+import { endOfToday, startOfToday } from "date-fns";
 
 const getMembers = async ({
   where,
@@ -110,19 +111,22 @@ export default async function MembersPage({
       ? {
           isMembershipPlanRenewed: false,
           startDate: {
-            gt: new Date(),
+            gt: startOfToday(),
           },
         }
       : status === "EXPIRED"
       ? {
           endDate: {
-            lt: new Date(),
+            lt: endOfToday(),
           },
         }
       : status === "ACTIVE"
       ? {
           endDate: {
-            gt: new Date(),
+            gt: startOfToday(),
+          },
+          startDate: {
+            lt: startOfToday(),
           },
         }
       : {}),
