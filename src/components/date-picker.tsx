@@ -27,9 +27,7 @@ export function DatePicker({ value, onChange, disabled }: DatePickerProps) {
       return setOpen(false);
     }
     if (selectedDate) {
-      const date = new Date();
-      selectedDate.setHours(date.getHours());
-      selectedDate.setMinutes(date.getMinutes());
+      selectedDate.setHours(0, 0, 0, 0);
     }
     onChange(selectedDate);
     setOpen(false);
@@ -38,14 +36,14 @@ export function DatePicker({ value, onChange, disabled }: DatePickerProps) {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-          <Button
-            disabled={disabled}
-            variant={"outline"}
-            className={cn("w-full pl-3 text-left font-normal")}
-          >
-            {value ? format(value, "PPP") : <span>Pick a date</span>}
-            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-          </Button>
+        <Button
+          disabled={disabled}
+          variant={"outline"}
+          className={cn("w-full pl-3 text-left font-normal")}
+        >
+          {value ? format(value, "PPP") : <span>Pick a date</span>}
+          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+        </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
         <Calendar
