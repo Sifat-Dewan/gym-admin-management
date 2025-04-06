@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { MemberForm } from "@/app/(main)/members/_components/member-form";
 import { PageHeader } from "@/components/page-header";
 import { db } from "@/lib/db";
