@@ -1,12 +1,18 @@
 export const dynamic = "force-dynamic";
 
+import { getRevenueVsExpenseChartData } from "@/actions/charts";
 import { PageHeader } from "@/components/page-header";
 import { db } from "@/lib/db";
 import { cn, formatPrice } from "@/lib/utils";
-import { endOfDay, endOfMonth, startOfDay, startOfMonth } from "date-fns";
-import { getRevenueVsExpenseChartData } from "@/actions/charts";
-import { RevenueVsExpenseChart } from "./revenue-vs-expense-chart";
+import {
+  endOfMonth,
+  endOfToday,
+  startOfMonth,
+  startOfToday,
+  startOfTomorrow,
+} from "date-fns";
 import { Metadata } from "next";
+import { RevenueVsExpenseChart } from "./revenue-vs-expense-chart";
 
 export const generateMetadata = (): Metadata => {
   return {
@@ -15,73 +21,94 @@ export const generateMetadata = (): Metadata => {
 };
 
 const DashboardPage = async () => {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  const tomorrow = new Date(today);
-  tomorrow.setDate(tomorrow.getDate() + 1);
-
   const [
     totalMembers,
     todaysJoinedMembersCount,
     todaysRenewedMembersCount,
     totalRevenue,
     thisMonthRevenue,
+    todaysRevenue,
     thisMonthExpenses,
     todaysExpenses,
     revenueVsExpenseChartData,
   ] = await Promise.all([
+    // Count total member;
     db.member.count(),
+
+    // Count Todays Joined Members
     db.member.count({
       where: {
         createdAt: {
-          gte: today,
-          lt: tomorrow,
+          gte: startOfToday(),
+          lt: startOfTomorrow(),
         },
       },
     }),
+
+    // Count Todays Renewed Members
     db.member.count({
       where: {
         costRecords: {
           some: {
-            createdAt: today,
+            createdAt: startOfToday(),
             type: "RENEW_MEMBERSHIP_PLAN",
           },
         },
       },
     }),
+
+    // Total revenue
     db.costRecord.aggregate({
       _sum: {
         cost: true,
       },
     }),
+
+    // This Month Revenue
     db.costRecord.aggregate({
       where: {
         createdAt: {
-          gte: startOfMonth(today),
-          lte: endOfMonth(today),
+          gte: startOfMonth(startOfToday()),
+          lt: endOfMonth(startOfToday()),
         },
       },
       _sum: {
         cost: true,
       },
     }),
-    db.expense.aggregate({
+
+    // Todays Revenue
+    db.costRecord.aggregate({
       where: {
         createdAt: {
-          gte: startOfMonth(today),
-          lte: endOfMonth(today),
+          gte: startOfToday(),
+          lt: endOfToday(),
         },
       },
       _sum: {
         cost: true,
       },
     }),
+
+    // This Month Expenses
     db.expense.aggregate({
       where: {
         createdAt: {
-          gte: startOfDay(today),
-          lte: endOfDay(today),
+          gte: startOfMonth(startOfToday()),
+          lt: endOfMonth(startOfToday()),
+        },
+      },
+      _sum: {
+        cost: true,
+      },
+    }),
+
+    // Todays Expenses
+    db.expense.aggregate({
+      where: {
+        createdAt: {
+          gte: startOfToday(),
+          lt: endOfToday(),
         },
       },
       _sum: {
@@ -116,8 +143,8 @@ const DashboardPage = async () => {
       value: formatPrice(thisMonthRevenue._sum.cost || 0),
     },
     {
-      label: "This Month Expense",
-      value: formatPrice(thisMonthExpenses._sum.cost || 0),
+      label: "Today's Revenue",
+      value: formatPrice(todaysRevenue._sum.cost || 0),
     },
   ];
 
@@ -147,7 +174,9 @@ const DashboardPage = async () => {
                 )}
               >
                 <h3 className="text-lg font-semibold">{label}</h3>
-                <p className="text-2xl font-semibold text-primary mt-auto">{value}</p>
+                <p className="text-2xl font-semibold text-primary mt-auto">
+                  {value}
+                </p>
               </li>
             ))}
           </ul>
@@ -163,7 +192,9 @@ const DashboardPage = async () => {
                 )}
               >
                 <h3 className="text-lg font-semibold">{label}</h3>
-                <p className="text-2xl font-semibold text-green-500 mt-auto">{value}</p>
+                <p className="text-2xl font-semibold text-green-500 mt-auto">
+                  {value}
+                </p>
               </li>
             ))}
           </ul>
