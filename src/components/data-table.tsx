@@ -68,6 +68,9 @@ export function DataTable<TData, TValue>({
             }}
             variant="outline"
           >
+            <span className="size-6 flex items-center justify-center bg-primary/90 text-white rounded-full text-xs font-medium">
+              {searchParams.size}
+            </span>
             Reset Filers
           </Button>
         )}

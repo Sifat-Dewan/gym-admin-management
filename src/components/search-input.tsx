@@ -30,7 +30,13 @@ export const SearchInput = ({
     }
     if (!debouncedValue && !searchParams.get("q")) return;
     setQueryParams({
-      query: { q: debouncedValue ? debouncedValue : "", page: "" },
+      query: {
+        q: debouncedValue ? debouncedValue : "",
+        page: "",
+        status: "",
+        gender: "",
+        membership_plan: "",
+      },
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedValue]);
