@@ -5,9 +5,9 @@ import { db } from "@/lib/db";
 import { getSkip } from "@/lib/utils";
 import { SearchParamsType, StatusType } from "@/types";
 import { Gender, Prisma } from "@prisma/client";
-import { columns } from "./_components/table/columns";
-import { Metadata } from "next";
 import { endOfToday, startOfToday } from "date-fns";
+import { Metadata } from "next";
+import { columns } from "./_components/table/columns";
 
 const getMembers = async ({
   where,
@@ -16,6 +16,7 @@ const getMembers = async ({
   where: Prisma.MemberWhereInput;
   skip: number;
 }) => {
+
   const members = await db.member.findMany({
     where,
     include: {

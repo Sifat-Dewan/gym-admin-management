@@ -9,7 +9,7 @@ import { Skeleton } from "./ui/skeleton";
 export const Header = () => {
   const { isLoaded } = useUser();
   return (
-    <header className="sticky z-50 bg-background top-0 h-[70px] border-b">
+    <header className="sticky z-50 bg-background top-0 h-[75px] border-b">
       <Container className="h-full gap-4 flex items-center">
         <MobileSidebar />
         <Logo className="" />
