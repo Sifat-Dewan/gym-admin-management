@@ -11,9 +11,6 @@ export const getMembershipStatusCounts = async () => {
         endDate: {
           gt: startOfToday(),
         },
-        startDate: {
-          lt: startOfToday(),
-        },
       },
     }),
 
