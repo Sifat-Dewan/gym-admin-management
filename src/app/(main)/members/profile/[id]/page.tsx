@@ -60,12 +60,12 @@ const MemberProfilePage = async ({ params }: { params: ParamsType }) => {
       <PageHeader label="Member's Profile" backButtonUrl="/members" />
       <div className="rounded-lg border border-dashed bg-background p-5 shadow-md">
         <div className="flex justify-between">
-          <div className="relative size-48">
+          <div className="relative bg-accent border rounded-md overflow-hidden size-48">
             <Image
               src={image || placeholderImage}
               alt="Avatar"
               fill
-              className="rounded-md object-cover"
+              className="object-cover"
             />
           </div>
           <Link

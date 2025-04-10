@@ -16,7 +16,6 @@ const getMembers = async ({
   where: Prisma.MemberWhereInput;
   skip: number;
 }) => {
-
   const members = await db.member.findMany({
     where,
     include: {
@@ -54,16 +53,16 @@ export default async function MembersPage({
 }: {
   searchParams: SearchParamsType;
 }) {
-  const page = (await searchParams).page || 1;
-  const q = (await searchParams).q as string;
-  const membershipPlan = (await searchParams).membership_plan as string;
-  const gender = (
-    (await searchParams).gender as string
-  )?.toUpperCase() as Gender;
+  const {
+    page = 1,
+    q,
+    membership_plan: membershipPlan,
+    gender: rowGender,
+    status: rowStatus,
+  } = await searchParams;
 
-  const status = (
-    (await searchParams).status as string
-  )?.toUpperCase() as StatusType;
+  const gender = rowGender?.toUpperCase() as Gender;
+  const status = rowStatus as StatusType;
 
   const skip = getSkip(page);
 

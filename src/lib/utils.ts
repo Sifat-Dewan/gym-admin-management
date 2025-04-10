@@ -1,8 +1,7 @@
 import { VIEW_PER_PAGE } from "@/constants";
 import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
 import { format } from "date-fns";
-import { StatusType } from "@/types";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -22,25 +21,6 @@ export const formatDate = (date: Date) => {
 
 export const capitalize = (text: string) => {
   return text.split("")[0].toUpperCase() + text.toLowerCase().slice(1);
-};
-
-export const getStatus = ({
-  startDate,
-  endDate,
-  hasRenewed,
-}: {
-  startDate: Date;
-  endDate: Date;
-  hasRenewed: boolean;
-}): StatusType => {
-  const today = new Date();
-  if (startDate > today && !hasRenewed) {
-    return "PENDING";
-  } else if (today > endDate) {
-    return "EXPIRED";
-  } else {
-    return "ACTIVE";
-  }
 };
 
 export const getEndDate = ({

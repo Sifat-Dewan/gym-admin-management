@@ -73,3 +73,12 @@ body {
     @apply absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2;
   }
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
