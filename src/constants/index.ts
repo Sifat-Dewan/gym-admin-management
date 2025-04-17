@@ -1,41 +1,33 @@
-import {
-  Diamond,
-  DollarSign,
-  LayoutDashboard,
-  Settings2,
-  Users2,
-} from "lucide-react";
 
 export const sidebarLinks = [
   {
     label: "Dashboard",
-    icon: LayoutDashboard,
     href: "/dashboard",
+    image: "/nav-icon/dashboard.png",
   },
   {
     label: "Members",
-    icon: Users2,
     href: "/members",
+    image: "/nav-icon/members.png",
   },
   {
     label: "Membership Plans",
-    icon: Diamond,
     href: "/membership-plans",
+    image: "/nav-icon/membership-plans.png",
   },
   {
     label: "Expenses",
-    icon: DollarSign,
     href: "/expenses",
+    image: "/nav-icon/expenses.png",
   },
   // {
   //   label: "Lockers",
-  //   icon: Lock,
   //   href: "/lockers",
   // },
   {
     label: "Settings",
-    icon: Settings2,
     href: "/settings",
+    image: "/nav-icon/settings.png",
   },
 ] as const;
 
@@ -62,4 +54,7 @@ export const months = [
   "December",
 ] as const;
 
-export const adminEmails = ["antoradria@gmail.com", "ratulislam544388@gmail.com"];
+export const adminEmails = [
+  "antoradria@gmail.com",
+  "ratulislam544388@gmail.com",
+];

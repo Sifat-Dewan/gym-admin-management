@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/page-header";
 import { VIEW_PER_PAGE } from "@/constants";
 import { db } from "@/lib/db";
 import { getSkip } from "@/lib/utils";
-import { SearchParamsType, StatusType } from "@/types";
+import { Orderby, SearchParamsType, StatusType } from "@/types";
 import { Gender, Prisma } from "@prisma/client";
 import { endOfToday, startOfToday } from "date-fns";
 import { Metadata } from "next";
@@ -12,9 +12,11 @@ import { columns } from "./_components/table/columns";
 const getMembers = async ({
   where,
   skip,
+  orderby,
 }: {
   where: Prisma.MemberWhereInput;
   skip: number;
+  orderby: Orderby;
 }) => {
   const members = await db.member.findMany({
     where,
@@ -28,7 +30,19 @@ const getMembers = async ({
     take: VIEW_PER_PAGE,
     skip,
     orderBy: {
-      createdAt: "desc",
+      ...(orderby
+        ? {
+            ...(orderby === "desc"
+              ? {
+                  endDate: "desc",
+                }
+              : {
+                  endDate: "asc",
+                }),
+          }
+        : {
+            createdAt: "desc",
+          }),
     },
   });
 
@@ -59,10 +73,12 @@ export default async function MembersPage({
     membership_plan: membershipPlan,
     gender: rowGender,
     status: rowStatus,
+    orderby: rowOrderby,
   } = await searchParams;
 
   const gender = rowGender?.toUpperCase() as Gender;
   const status = rowStatus as StatusType;
+  const orderby = rowOrderby as Orderby;
 
   const skip = getSkip(page);
 
@@ -133,7 +149,7 @@ export default async function MembersPage({
   };
 
   const [members, totalMembers] = await Promise.all([
-    getMembers({ where, skip }),
+    getMembers({ where, skip, orderby }),
     getTotalMembers(where),
   ]);
 
@@ -146,6 +162,7 @@ export default async function MembersPage({
         pagesDataCount={totalMembers}
         showSearchInput
         searchInputPlaceholder="Search members by Name or ID"
+        orderbyFilter
       />
     </div>
   );

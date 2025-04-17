@@ -57,3 +57,5 @@ export type UserType = {
 };
 
 export type ActionReturnedType = Promise<{ success?: string; error?: string }>;
+
+export type Orderby = "asc" | "desc";

@@ -23,6 +23,7 @@ import React from "react";
 import { Pagination } from "./pagination";
 import { SearchInput } from "./search-input";
 import { Button } from "./ui/button";
+import { DataTableSortbyFilter } from "./data-table-sortby-filter";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -30,6 +31,7 @@ interface DataTableProps<TData, TValue> {
   showSearchInput?: boolean;
   searchInputPlaceholder?: string;
   pagesDataCount?: number;
+  orderbyFilter?: boolean;
 }
 
 export function DataTable<TData, TValue>({
@@ -38,6 +40,7 @@ export function DataTable<TData, TValue>({
   showSearchInput,
   searchInputPlaceholder,
   pagesDataCount,
+  orderbyFilter,
 }: DataTableProps<TData, TValue>) {
   const { isLoading } = useLoadingStore();
   const { setQueryParams } = useQueryParams();
@@ -53,12 +56,14 @@ export function DataTable<TData, TValue>({
     },
   });
 
-
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-5 flex-wrap">
         {showSearchInput && (
-          <SearchInput placeholder={searchInputPlaceholder} />
+          <>
+            <SearchInput placeholder={searchInputPlaceholder} />
+            {orderbyFilter && <DataTableSortbyFilter />}
+          </>
         )}
         {!!searchParams.size && (
           <Button
