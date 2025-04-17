@@ -60,10 +60,10 @@ export function DataTable<TData, TValue>({
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-5 flex-wrap">
         {showSearchInput && (
-          <>
+          <div className="flex gap-3 w-full">
             <SearchInput placeholder={searchInputPlaceholder} />
             {orderbyFilter && <DataTableSortbyFilter />}
-          </>
+          </div>
         )}
         {!!searchParams.size && (
           <Button
