@@ -8,6 +8,9 @@ export const getMembershipStatusCounts = async () => {
     //active
     db.member.count({
       where: {
+        startDate: {
+          lte: startOfToday(),
+        },
         endDate: {
           gt: startOfToday(),
         },
@@ -45,16 +48,16 @@ export const testAction = async () => {
     const endDate = new Date(member.endDate);
 
     // Set both startDate and endDate to the beginning of their respective days
-    startDate.setHours(0, 0, 0, 0);  // Start date at 00:00:00
-    endDate.setHours(0, 0, 0, 0);    // End date at 00:00:00
+    startDate.setHours(0, 0, 0, 0); // Start date at 00:00:00
+    endDate.setHours(0, 0, 0, 0); // End date at 00:00:00
 
     // Update member with new startDate and endDate
     await db.member.update({
       where: { id: member.id },
       data: {
         startDate: startDate,
-        endDate: endDate
-      }
+        endDate: endDate,
+      },
     });
   }
 };
