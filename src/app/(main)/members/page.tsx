@@ -77,7 +77,7 @@ export default async function MembersPage({
   } = await searchParams;
 
   const gender = rowGender?.toUpperCase() as Gender;
-  const status = rowStatus as StatusType;
+  const status = rowStatus?.toUpperCase() as StatusType;
   const orderby = rowOrderby as Orderby;
 
   const skip = getSkip(page);
