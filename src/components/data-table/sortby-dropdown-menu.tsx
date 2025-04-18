@@ -5,23 +5,27 @@ import {
   ArrowUpDown,
   ArrowUpWideNarrow,
 } from "lucide-react";
-import { DropDownMenu } from "./dropdown-menu";
-import { buttonVariants } from "./ui/button";
-import { DropdownMenuItemType } from "@/types";
+import { DropDownMenu } from "../dropdown-menu";
+import { buttonVariants } from "../ui/button";
+import { DropdownMenuItemType, Orderby } from "@/types";
 import { useQueryParams } from "@/hooks/use-query-params";
+import { useSearchParams } from "next/navigation";
 
-export const DataTableSortbyFilter = () => {
+export const SortbyDropdownMenu = () => {
   const { setQueryParams } = useQueryParams();
+  const orderby = useSearchParams().get("orderby") as Orderby;
   const items: DropdownMenuItemType[] = [
     {
       label: "Asc",
       icon: ArrowUpWideNarrow,
       onClick: () => setQueryParams({ query: { orderby: "asc" } }),
+      active: orderby === "asc",
     },
     {
       label: "Desc",
       icon: ArrowDownWideNarrow,
       onClick: () => setQueryParams({ query: { orderby: "desc" } }),
+      active: orderby === "desc",
     },
   ];
 

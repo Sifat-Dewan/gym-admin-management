@@ -17,13 +17,13 @@ import {
 } from "@/components/ui/table";
 import { useLoadingStore } from "@/hooks/use-loading-store";
 import { useQueryParams } from "@/hooks/use-query-params";
-import { Loader2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import React from "react";
-import { Pagination } from "./pagination";
-import { SearchInput } from "./search-input";
-import { Button } from "./ui/button";
-import { DataTableSortbyFilter } from "./data-table-sortby-filter";
+import { Pagination } from "../pagination";
+import { SearchInput } from "../search-input";
+import { TableLoader } from "../table-loader";
+import { Button } from "../ui/button";
+import { SortbyDropdownMenu } from "./sortby-dropdown-menu";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -43,6 +43,7 @@ export function DataTable<TData, TValue>({
   orderbyFilter,
 }: DataTableProps<TData, TValue>) {
   const { isLoading } = useLoadingStore();
+
   const { setQueryParams } = useQueryParams();
   const searchParams = useSearchParams();
   const [rowSelection, setRowSelection] = React.useState({});
@@ -57,12 +58,12 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex relative flex-col gap-4">
       <div className="flex items-center gap-5 flex-wrap">
         {showSearchInput && (
           <div className="flex gap-3 w-full">
             <SearchInput placeholder={searchInputPlaceholder} />
-            {orderbyFilter && <DataTableSortbyFilter />}
+            {orderbyFilter && <SortbyDropdownMenu />}
           </div>
         )}
         {!!searchParams.size && (
@@ -80,7 +81,8 @@ export function DataTable<TData, TValue>({
           </Button>
         )}
       </div>
-      <div className="rounded-md border">
+      <div className="overflow-hidden rounded-md relative border">
+        {isLoading && <TableLoader />}
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -129,11 +131,6 @@ export function DataTable<TData, TValue>({
             )}
           </TableBody>
         </Table>
-        {isLoading && (
-          <div className="fixed inset-0 flex items-center justify-center bg-neutral-950/20 dark:bg-neutral-950/50 z-[9999]">
-            <Loader2 className="size-10 md:ml-[230px] text-primary animate-spin" />
-          </div>
-        )}
       </div>
       {!!pagesDataCount && <Pagination dataCount={pagesDataCount} />}
     </div>
