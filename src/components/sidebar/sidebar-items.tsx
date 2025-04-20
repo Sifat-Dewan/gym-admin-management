@@ -35,7 +35,7 @@ export const SidebarItems = ({ className, onClose }: SidebarItemsProps) => {
                 {isActive && (
                   <motion.span
                     layoutId="activeSidebarLink"
-                    className="absolute inset-y-0 w-2 bg-blue-600 left-0 rounded-r-full"
+                    className="absolute inset-y-0 w-2 bg-blue-600 right-0 rounded-l-full"
                   />
                 )}
               </Link>

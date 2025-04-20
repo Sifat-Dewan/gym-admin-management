@@ -4,7 +4,7 @@ import { SidebarItems } from "./sidebar-items";
 
 export const Sidebar = () => {
   return (
-    <aside className="sticky top-[70px] border-r hidden md:block min-w-[260px] h-[calc(100vh_-_70px)]">
+    <aside className="fixed top-[75px] border-r hidden lg:block min-w-[260px] h-screen bg-background z-20">
       <SidebarItems />
     </aside>
   );

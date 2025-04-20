@@ -21,9 +21,9 @@ import { useSearchParams } from "next/navigation";
 import React from "react";
 import { Pagination } from "../pagination";
 import { SearchInput } from "../search-input";
-import { TableLoader } from "../table-loader";
 import { Button } from "../ui/button";
 import { SortbyDropdownMenu } from "./sortby-dropdown-menu";
+import { Loader } from "./loader";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -76,13 +76,13 @@ export function DataTable<TData, TValue>({
           >
             <span className="size-5 flex items-center justify-center bg-primary/90 text-white rounded-full text-xs font-medium">
               {searchParams.size}
-            </span>
+          </span>
             Reset Filers
           </Button>
         )}
       </div>
       <div className="overflow-hidden rounded-md relative border">
-        {isLoading && <TableLoader />}
+        {isLoading && <Loader />}
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

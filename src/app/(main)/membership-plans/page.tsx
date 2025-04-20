@@ -1,4 +1,4 @@
-import { DataTable } from "@/components/data-table/data-table";
+import { DataTable } from "@/components/data-table";
 import { PageHeader } from "@/components/page-header";
 import { db } from "@/lib/db";
 import { Metadata } from "next";

@@ -11,7 +11,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
       <Header />
       <main className="flex">
         <Sidebar />
-        <Container className="pb-20">{children}</Container>
+        <Container className="pb-20 lg:pl-[284px]">{children}</Container>
       </main>
       <Toaster />
     </QueryProvider>
