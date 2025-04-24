@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import { getRevenueVsExpenseChartData } from "@/actions/charts";
+import { CountUp } from "@/components/count-up";
 import { PageHeader } from "@/components/page-header";
 import { db } from "@/lib/db";
 import { cn, formatPrice } from "@/lib/utils";
@@ -174,9 +175,7 @@ const DashboardPage = async () => {
                 )}
               >
                 <h3 className="text-lg font-semibold">{label}</h3>
-                <p className="text-2xl font-semibold text-primary mt-auto">
-                  {value}
-                </p>
+                <CountUp value={value} className="text-primary" />
               </li>
             ))}
           </ul>
@@ -192,9 +191,7 @@ const DashboardPage = async () => {
                 )}
               >
                 <h3 className="text-lg font-semibold">{label}</h3>
-                <p className="text-2xl font-semibold text-green-500 mt-auto">
-                  {value}
-                </p>
+                <CountUp value={value} className="text-green-500" />
               </li>
             ))}
           </ul>
@@ -210,9 +207,7 @@ const DashboardPage = async () => {
                 )}
               >
                 <h3 className="text-lg font-semibold">{label}</h3>
-                <p className="text-2xl font-semibold text-destructive mt-auto">
-                  {value}
-                </p>
+                <CountUp value={value} className="text-red-500" />
               </li>
             ))}
           </ul>

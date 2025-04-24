@@ -1,5 +1,7 @@
 "use client";
 
+import { CountUp } from "@/components/count-up";
+
 // import { Button } from "@/components/ui/button";
 // import { useTransition } from "react";
 // import { updateAllMembers } from "./actions";
@@ -13,10 +15,11 @@ const Page = () => {
   //   });
   // };
   return (
-    <div>
+    <div className="h-screen flex items-center justify-center">
       {/* <Button disabled={isPending} onClick={handleClick}>
         Click
       </Button> */}
+      <CountUp value="5345.33"/>
     </div>
   );
 };

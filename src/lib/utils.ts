@@ -12,6 +12,8 @@ export const formatPrice = (price: number = 0) => {
     style: "currency",
     currency: "BDT",
     currencyDisplay: "narrowSymbol",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   }).format(price);
 };
 
