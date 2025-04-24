@@ -1,37 +1,34 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { endOfToday, startOfToday } from "date-fns";
+import { startOfToday, endOfToday } from "date-fns";
 
 export const getMembershipStatusCounts = async () => {
   const [activeCount, pendingCount, expiredCount] = await Promise.all([
-    //active
     db.member.count({
       where: {
         startDate: {
-          lte: startOfToday(),
+          lte: endOfToday(),
         },
         endDate: {
-          gt: startOfToday(),
+          gte: startOfToday(),
         },
       },
     }),
 
-    //pending
     db.member.count({
       where: {
         isMembershipPlanRenewed: false,
         startDate: {
-          gt: startOfToday(),
+          gt: endOfToday(),
         },
       },
     }),
 
-    //expired
     db.member.count({
       where: {
         endDate: {
-          lt: endOfToday(),
+          lt: startOfToday(),
         },
       },
     }),

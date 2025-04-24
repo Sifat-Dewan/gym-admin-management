@@ -82,18 +82,16 @@ export default async function MembersPage({
 
   const skip = getSkip(page);
 
+  const todayStart = startOfToday();
+  const todayEnd = endOfToday();
+
   const where: Prisma.MemberWhereInput = {
     ...(gender
       ? {
-          ...(gender === "MALE"
-            ? {
-                gender: "MALE",
-              }
-            : {
-                gender: "FEMALE",
-              }),
+          gender: gender === "MALE" ? "MALE" : "FEMALE",
         }
       : {}),
+
     ...(q
       ? {
           OR: [
@@ -113,6 +111,7 @@ export default async function MembersPage({
           ],
         }
       : {}),
+
     ...(membershipPlan
       ? {
           membershipPlan: {
@@ -123,28 +122,31 @@ export default async function MembersPage({
           },
         }
       : {}),
-    ...(status === "PENDING"
-      ? {
-          isMembershipPlanRenewed: false,
-          startDate: {
-            gt: startOfToday(),
-          },
-        }
-      : status === "EXPIRED"
-      ? {
-          endDate: {
-            lt: endOfToday(),
-          },
-        }
-      : status === "ACTIVE"
-      ? {
-          endDate: {
-            gt: startOfToday(),
-          },
-          startDate: {
-            lt: startOfToday(),
-          },
-        }
+
+    ...(status
+      ? status === "ACTIVE"
+        ? {
+            startDate: {
+              lte: todayEnd,
+            },
+            endDate: {
+              gte: todayStart,
+            },
+          }
+        : status === "PENDING"
+        ? {
+            isMembershipPlanRenewed: false,
+            startDate: {
+              gt: todayEnd,
+            },
+          }
+        : status === "EXPIRED"
+        ? {
+            endDate: {
+              lt: todayStart,
+            },
+          }
+        : {}
       : {}),
   };
 
@@ -152,8 +154,6 @@ export default async function MembersPage({
     getMembers({ where, skip, orderby }),
     getTotalMembers(where),
   ]);
-
-  console.log(members)
 
   return (
     <div className="space-y-4">
