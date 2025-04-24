@@ -72,10 +72,7 @@ export const RenewForm = ({
   }, [membershipPlan.price, modifiedCost]);
 
   const endDate = useMemo(() => {
-    return getEndDate({
-      startDate,
-      durationInMonth: membershipPlan.durationInMonth,
-    });
+    return getEndDate(startDate, membershipPlan.durationInMonth);
   }, [startDate, membershipPlan.durationInMonth]);
 
   function onSubmit(values: RenewMemberValues) {

@@ -77,10 +77,7 @@ export const MemberForm = ({
   const startDate = form.getValues("startDate");
   const endDate = useMemo(() => {
     if (startDate && selectedMembershipPlan) {
-      return getEndDate({
-        startDate: startDate,
-        durationInMonth: selectedMembershipPlan.durationInMonth,
-      });
+      return getEndDate(startDate, selectedMembershipPlan.durationInMonth);
     }
   }, [startDate, selectedMembershipPlan]);
 
@@ -123,7 +120,6 @@ export const MemberForm = ({
       }
     });
   };
-
 
   useEffect(() => {
     if (!selectedMembershipPlan) return;

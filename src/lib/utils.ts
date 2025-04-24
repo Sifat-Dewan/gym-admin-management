@@ -23,15 +23,10 @@ export const capitalize = (text: string) => {
   return text.split("")[0].toUpperCase() + text.toLowerCase().slice(1);
 };
 
-export const getEndDate = ({
-  startDate,
-  durationInMonth,
-}: {
-  startDate: Date;
-  durationInMonth: number;
-}) => {
+export const getEndDate = (startDate: Date, durationInMonth: number = 1) => {
   const endDate = new Date(startDate);
   endDate.setMonth(startDate.getMonth() + durationInMonth);
+  endDate.setHours(23, 59, 59, 999);
   return endDate;
 };
 
