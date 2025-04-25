@@ -7,7 +7,7 @@ const variants: Variants = {
   initial: {
     y: 0,
   },
-  animate: (numberCount) => {
+  animate: (numberCount: number) => {
     return {
       y: `-${numberCount * 100}%`,
     };
