@@ -49,7 +49,7 @@ export const RenewForm = ({
   const form = useForm<RenewMemberValues>({
     resolver: zodResolver(RenewMemberSchema),
     defaultValues: {
-      startDate: member.startDate,
+      startDate: member.endDate,
       membershipPlanId: member.membershipPlanId,
     },
   });
@@ -81,7 +81,7 @@ export const RenewForm = ({
         values,
         cost,
         endDate,
-        id: member.id,
+        memberId: member.id,
       }).then(({ success, error }) => {
         if (success) {
           toast.success(success);

@@ -11,6 +11,7 @@ import {
 } from "@/validations";
 import { currentUser } from "@clerk/nextjs/server";
 import { Prisma } from "@prisma/client";
+import { startOfDay } from "date-fns";
 
 export const createMember = async ({
   values,
@@ -119,31 +120,31 @@ export const deleteMembers = async (ids: string[]) => {
 
 export const renewMembershipPlan = async ({
   values,
-  id,
+  memberId,
   cost,
-  endDate: endDate,
+  endDate,
 }: {
   values: RenewMemberValues;
-  id: string;
+  memberId: string;
   cost: number;
   endDate: Date;
 }) => {
-  RenewMemberSchema.parse(values);
-
-  const { membershipPlanId, startDate: startDate } = values;
-
   try {
+    RenewMemberSchema.parse(values);
+  
+    const { membershipPlanId, startDate } = values;
+
     if (!(await isAdmin())) {
       return { error: "Unauthorized" };
     }
 
     await db.member.update({
       where: {
-        id,
+        id: memberId,
       },
       data: {
         membershipPlanId,
-        startDate,
+        startDate: startOfDay(startDate),
         endDate,
         isMembershipPlanRenewed: true,
         costRecords: {
