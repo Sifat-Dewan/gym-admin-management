@@ -110,7 +110,7 @@ export const RenewForm = ({
                 <FormItem>
                   <FormLabel>Start Date</FormLabel>
                   <FormControl>
-                    <DatePicker {...field} />
+                    <DatePicker disabled={isPending} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -128,6 +128,7 @@ export const RenewForm = ({
                 <FormLabel>Membership Plan</FormLabel>
                 <FormControl>
                   <Select
+                    disabled={isPending}
                     defaultValue={field.value}
                     onValueChange={field.onChange}
                   >
