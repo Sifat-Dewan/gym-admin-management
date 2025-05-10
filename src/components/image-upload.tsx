@@ -94,7 +94,7 @@ export const ImageUpload = ({
           <ImagePlus className="size-6" />
         </Label>
       </Button>
-      {previewImage && (
+      {previewImage && !isImageUploading && (
         <Button
           type="button"
           onClick={() => {

@@ -48,7 +48,7 @@ export const MemberForm = ({
   const queryClient = useQueryClient();
   const [cost, setCost] = useState(0);
   const [modifiedCost, setModifiedCost] = useState(0);
-  const [isImageUploading, setIsImageUploading] = useState(false);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
   const [isPending, startTransition] = useTransition();
   const { FormError, setError } = useFormError();
   const router = useRouter();
@@ -351,8 +351,8 @@ export const MemberForm = ({
                     value={field.value}
                     onChange={field.onChange}
                     disabled={isPending}
-                    isImageUploading={isImageUploading}
-                    onChangeUploadingImage={setIsImageUploading}
+                    isImageUploading={isUploadingImage}
+                    onChangeUploadingImage={setIsUploadingImage}
                   />
                 </FormControl>
                 <FormMessage />
@@ -364,7 +364,8 @@ export const MemberForm = ({
             <CostModifier value={cost} onChange={setModifiedCost} />
           )}
           <LoadingButton
-            isLoading={isPending || isImageUploading}
+            isLoading={isPending}
+            disabled={isUploadingImage}
             type="submit"
           >
             {member ? "Save" : "Create"}

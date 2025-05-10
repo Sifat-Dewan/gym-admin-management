@@ -110,7 +110,7 @@ export const deleteMembers = async (ids: string[]) => {
         },
       },
     });
-
+    
     return { success: "Member(s) Deleted" };
   } catch (error) {
     console.log("Error:", error);
@@ -131,7 +131,7 @@ export const renewMembershipPlan = async ({
 }) => {
   try {
     RenewMemberSchema.parse(values);
-  
+
     const { membershipPlanId, startDate } = values;
 
     if (!(await isAdmin())) {
