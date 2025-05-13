@@ -4,6 +4,9 @@ import { db } from "@/lib/db";
 import { Metadata } from "next";
 import { columns } from "./_components/table/columns";
 import { ParamsType } from "@/types";
+import Await from "@/components/await";
+import { Suspense } from "react";
+import { PageLoader } from "@/components/loaders/page-loader";
 
 export const generateMetadata = (): Metadata => {
   return {
@@ -17,7 +20,7 @@ const MembershipPlansPage = async ({
   searchParams: ParamsType;
 }) => {
   const { q } = await searchParams;
-  const memebershipPlans = await db.membershipPlan.findMany({
+  const promise = db.membershipPlan.findMany({
     where: {
       ...(q
         ? {
@@ -32,8 +35,8 @@ const MembershipPlansPage = async ({
       _count: {
         select: {
           members: true,
-        }
-      }
+        },
+      },
     },
     orderBy: {
       price: "asc",
@@ -43,12 +46,18 @@ const MembershipPlansPage = async ({
   return (
     <div className="space-y-4">
       <PageHeader label="Membership Plans" actionUrl="/membership-plans/new" />
-      <DataTable
-        columns={columns}
-        data={memebershipPlans}
-        searchInputPlaceholder="Search Membership plans..."
-        showSearchInput
-      />
+      <Suspense fallback={<PageLoader />}>
+        <Await promise={promise}>
+          {(data) => (
+            <DataTable
+              columns={columns}
+              data={data}
+              searchInputPlaceholder="Search Membership plans..."
+              showSearchInput
+            />
+          )}
+        </Await>
+      </Suspense>
     </div>
   );
 };

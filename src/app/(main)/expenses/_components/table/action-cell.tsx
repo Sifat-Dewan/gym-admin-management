@@ -37,7 +37,7 @@ export const ActionCell = ({ expense, table }: ActionCellProps) => {
     {
       label: "Edit Expense",
       icon: Edit,
-      onClick: () => router.push(`/expenses/edit/${expense.id}`),
+      onClick: () => router.push(`/expenses/${expense.id}/edit`),
     },
     {
       label: "Delete Expense",

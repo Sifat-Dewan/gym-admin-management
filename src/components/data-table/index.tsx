@@ -19,11 +19,11 @@ import { useLoadingStore } from "@/hooks/use-loading-store";
 import { useQueryParams } from "@/hooks/use-query-params";
 import { useSearchParams } from "next/navigation";
 import React from "react";
+import { TableLoader } from "../loaders/table-loader";
 import { Pagination } from "../pagination";
 import { SearchInput } from "../search-input";
 import { Button } from "../ui/button";
 import { SortbyDropdownMenu } from "./sortby-dropdown-menu";
-import { Loader } from "./loader";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -58,7 +58,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="flex relative flex-col gap-4">
+    <div className="flex relative flex-col gap-4 pt-4">
       <div className="flex items-center gap-5 flex-wrap">
         {showSearchInput && (
           <div className="flex gap-3 w-full">
@@ -82,7 +82,7 @@ export function DataTable<TData, TValue>({
         )}
       </div>
       <div className="overflow-hidden rounded-md relative border">
-        {isLoading && <Loader />}
+        {isLoading && <TableLoader />}
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
