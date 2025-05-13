@@ -25,9 +25,9 @@ export const SidebarItems = ({ className, onClose }: SidebarItemsProps) => {
                 onClick={onClose}
                 href={href}
                 className={cn(
-                  "flex relative transition-colors text-foreground/80 items-center gap-4 py-2.5 px-4 hover:bg-accent font-medium",
+                  "flex relative transition-colors text-foreground/80 items-center gap-4 py-2.5 px-4 hover:bg-gray-300/80 dark:hover:bg-accent font-medium",
                   isActive &&
-                    "bg-muted hover:bg-accent text-primary font-semibold"
+                    "bg-accent dark:bg-muted text-primary font-semibold"
                 )}
               >
                 <Image src={image} alt="Icon" width={20} height={20} />
