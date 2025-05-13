@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteMembershipPlans } from "@/actions/membership-plans";
+import { deleteMembershipPlans } from "@/app/(main)/membership-plans/actions";
 import { TableActionHeader } from "@/components/table-action-header";
 import { Checkbox } from "@/components/ui/checkbox";
 import { formatPrice } from "@/lib/utils";

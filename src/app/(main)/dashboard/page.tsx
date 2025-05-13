@@ -1,6 +1,5 @@
 export const dynamic = "force-dynamic";
 
-import { getRevenueVsExpenseChartData } from "@/actions/charts";
 import { CountUp } from "@/components/count-up";
 import { PageHeader } from "@/components/page-header";
 import { db } from "@/lib/db";
@@ -14,6 +13,7 @@ import {
 } from "date-fns";
 import { Metadata } from "next";
 import { RevenueVsExpenseChart } from "./revenue-vs-expense-chart";
+import { getRevenueVsExpenseChartData } from "./actions";
 
 export const generateMetadata = (): Metadata => {
   return {
@@ -51,7 +51,9 @@ const DashboardPage = async () => {
       where: {
         costRecords: {
           some: {
-            createdAt: startOfToday(),
+            createdAt: {
+              gte: startOfToday(),
+            },
             type: "RENEW_MEMBERSHIP_PLAN",
           },
         },

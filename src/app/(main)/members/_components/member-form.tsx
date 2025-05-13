@@ -1,6 +1,5 @@
 "use client";
 
-import { createMember, updateMember } from "@/actions/members";
 import { useFormError } from "@/hooks/use-form-error";
 import { capitalize, cn, formatDate, getEndDate } from "@/lib/utils";
 import { MemberSchema, MemberValues } from "@/validations";
@@ -33,6 +32,7 @@ import {
 import { FormCard } from "../../../../components/form-card";
 import { DatePicker } from "@/components/date-picker";
 import { useQueryClient } from "@tanstack/react-query";
+import { createMember, updateMember } from "../actions";
 
 interface MemberFormProps {
   member?: Member;

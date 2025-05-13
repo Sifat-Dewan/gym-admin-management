@@ -1,6 +1,5 @@
 "use client";
 
-import { renewMembershipPlan } from "@/actions/members";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useMemo, useState, useTransition } from "react";
@@ -31,6 +30,8 @@ import {
 import { formatDate, getEndDate } from "@/lib/utils";
 import { RenewMemberSchema, RenewMemberValues } from "@/validations";
 import { Member, MembershipPlan } from "@prisma/client";
+import { renewMembershipPlan } from "../../actions";
+import { startOfDay } from "date-fns";
 
 export const RenewForm = ({
   member,
@@ -49,7 +50,7 @@ export const RenewForm = ({
   const form = useForm<RenewMemberValues>({
     resolver: zodResolver(RenewMemberSchema),
     defaultValues: {
-      startDate: member.endDate,
+      startDate: startOfDay(member.endDate),
       membershipPlanId: member.membershipPlanId,
     },
   });

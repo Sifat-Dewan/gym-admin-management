@@ -1,12 +1,12 @@
 "use client";
 
-import { setDefaultAdmissionFee } from "@/actions/default";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DEFAULT_ADMISSION_FEE } from "@/constants";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { toast } from "sonner";
+import { setDefaultAdmissionFee } from "./actions";
 
 interface AddmissionFeeFormProps {
   admissionFee?: number;

@@ -1,6 +1,6 @@
 import { VIEW_PER_PAGE } from "@/constants";
 import { clsx, type ClassValue } from "clsx";
-import { format } from "date-fns";
+import { addMonths, endOfDay, format } from "date-fns";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -26,10 +26,7 @@ export const capitalize = (text: string) => {
 };
 
 export const getEndDate = (startDate: Date, durationInMonth: number = 1) => {
-  const endDate = new Date(startDate);
-  endDate.setMonth(startDate.getMonth() + durationInMonth);
-  endDate.setHours(23, 59, 59, 999);
-  return endDate;
+  return endOfDay(addMonths(startDate, durationInMonth));
 };
 
 export const getSkip = (

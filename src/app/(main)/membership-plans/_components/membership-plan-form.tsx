@@ -3,7 +3,7 @@
 import {
   createMembershipPlan,
   updateMembershipPlan,
-} from "@/actions/membership-plans";
+} from "@/app/(main)/membership-plans/actions";
 import { useFormError } from "@/hooks/use-form-error";
 import { MembershipPlanSchema, MembershipPlanValues } from "@/validations";
 import { zodResolver } from "@hookform/resolvers/zod";

@@ -1,6 +1,5 @@
 "use client";
 
-import { deleteMembers } from "@/actions/members";
 import { DropDownMenu } from "@/components/dropdown-menu";
 import { today } from "@/constants";
 import { useWarningModal } from "@/hooks/use-warning-modal";
@@ -9,6 +8,7 @@ import { Table } from "@tanstack/react-table";
 import { differenceInDays } from "date-fns";
 import { Calendar, Edit, MoreVertical, Trash2, User2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { deleteMembers } from "../../actions";
 
 interface ActionCellProps {
   member: FullMemberType;

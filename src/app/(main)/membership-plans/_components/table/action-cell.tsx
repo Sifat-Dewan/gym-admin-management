@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteMembershipPlans } from "@/actions/membership-plans";
+import { deleteMembershipPlans } from "@/app/(main)/membership-plans/actions";
 import { DropDownMenu } from "@/components/dropdown-menu";
 import { useWarningModal } from "@/hooks/use-warning-modal";
 import { DropdownMenuItemType } from "@/types";
