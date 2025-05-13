@@ -37,7 +37,7 @@ export const ActionCell = ({ membershipPlan, table }: ActionCellProps) => {
     {
       label: "Edit Membership Plan",
       icon: Edit,
-      onClick: () => router.push(`/membership-plans/edit/${membershipPlan.id}`),
+      onClick: () => router.push(`/membership-plans/${membershipPlan.id}/edit`),
     },
     {
       label: "Delete Membership Plan",

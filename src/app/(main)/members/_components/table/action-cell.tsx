@@ -44,19 +44,19 @@ export const ActionCell = ({ member, table }: ActionCellProps) => {
     {
       label: "View Profile",
       icon: User2,
-      onClick: () => router.push(`/members/profile/${member.id}`),
+      onClick: () => router.push(`/members/${member.id}/profile`),
     },
     {
       label: "Edit Member",
       icon: Edit,
-      onClick: () => router.push(`/members/edit/${member.id}`),
+      onClick: () => router.push(`/members/${member.id}/edit`),
     },
     ...(isMembershipPlanRenewable
       ? [
           {
             icon: Calendar,
             label: "Renew Membership Plan",
-            onClick: () => router.push(`/members/renew/${member.id}`),
+            onClick: () => router.push(`/members/${member.id}/renew`),
           },
         ]
       : []),
