@@ -11,7 +11,7 @@ export const Header = () => {
   return (
     <Container
       elem="header"
-      className="sticky max-w-full flex items-center gap-4 z-50 bg-background top-0 h-[75px] border-b"
+      className="sticky max-w-full flex items-center gap-4 z-50 bg-secondary top-0 h-[75px] border-b"
     >
       <MobileSidebar />
       <Logo className="" />

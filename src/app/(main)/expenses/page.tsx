@@ -38,14 +38,14 @@ const ExpensesPage = async ({
   });
 
   return (
-    <div className="space-y-3">
+    <>
       <PageHeader label="Expenses" actionUrl="/expenses/new" />
       <Suspense fallback={<PageLoader />}>
         <Await promise={promise}>
           {(data) => <DataTable columns={columns} data={data} />}
         </Await>
       </Suspense>
-    </div>
+    </>
   );
 };
 

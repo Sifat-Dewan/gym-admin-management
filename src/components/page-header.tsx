@@ -21,7 +21,7 @@ export const PageHeader = ({
   backButtonUrl,
 }: PageHeaderProps) => {
   return (
-    <div className={cn("flex h-[60px] items-center border-b", className)}>
+    <div className={cn("flex h-[60px] border bg-secondary my-4 rounded-xl px-4 items-center ", className)}>
       {backButtonUrl && (
         <Link
           href={backButtonUrl}

@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { LoadingButton } from "@/components/loading-button";
 import { Input } from "@/components/ui/input";
 import { DEFAULT_ADMISSION_FEE } from "@/constants";
 import { useRouter } from "next/navigation";
@@ -43,9 +43,9 @@ export const AddmissionFeeForm = ({
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      <Button disabled={isPending || !value} className="ml-4">
+      <LoadingButton size="default" disabled isLoading={isPending} className="ml-4">
         Save
-      </Button>
+      </LoadingButton>
     </form>
   );
 };

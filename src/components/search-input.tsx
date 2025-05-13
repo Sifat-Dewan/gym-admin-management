@@ -42,10 +42,10 @@ export const SearchInput = ({
   }, [debouncedValue]);
 
   return (
-    <div className="relative w-full max-w-[450px]">
+    <div className="relative w-full max-w-[450px] bg-background rounded-lg">
       <Input
         placeholder={placeholder}
-        className={cn("w-full", className)}
+        className={cn("w-full rounded-lg", className)}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         aria-label="Search Input"

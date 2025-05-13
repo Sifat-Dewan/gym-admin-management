@@ -13,7 +13,7 @@ const NewMemberPage = async () => {
     db.default.findFirst(),
   ]);
   return (
-    <div className="space-y-6">
+    <>
       <PageHeader label="New Member" backButtonUrl="/members" />
       <Suspense fallback={<PageLoader />}>
         <Await promise={promise}>
@@ -25,7 +25,7 @@ const NewMemberPage = async () => {
           )}
         </Await>
       </Suspense>
-    </div>
+    </>
   );
 };
 

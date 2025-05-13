@@ -28,9 +28,9 @@ export function DatePicker({ value, onChange, disabled }: DatePickerProps) {
         <Button
           disabled={disabled}
           variant={"outline"}
-          className={cn("w-full pl-3 text-left font-normal")}
+          className={cn("w-full pl-3 text-left text-base font-normal")}
         >
-          {value ? format(value, "PPP") : <span>Pick a date</span>}
+          {value ? format(value, "PPP") : <span className="text-muted-foreground">Pick a date</span>}
           <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
         </Button>
       </PopoverTrigger>

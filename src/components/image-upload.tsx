@@ -63,7 +63,7 @@ export const ImageUpload = ({
   };
 
   return (
-    <div className="relative size-28 rounded-md border-2 border-dashed">
+    <div className="relative size-28 rounded-md border-2 bg-muted border-dashed">
       <input
         id="file"
         type="file"
@@ -88,7 +88,7 @@ export const ImageUpload = ({
         size="icon"
         variant="outline"
         type="button"
-        className="abs-center"
+        className="abs-center bg-accent hover:bg-gray-300 dark:hover:bg-gray-700"
       >
         <Label htmlFor="file" className="cursor-pointer">
           <ImagePlus className="size-6" />

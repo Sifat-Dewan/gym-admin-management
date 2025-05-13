@@ -15,16 +15,16 @@ export const generateMetadata = (): Metadata => {
 const SettingsPage = async () => {
   const promise = db.default.findFirst();
   return (
-    <div className="space-y-6">
+    <>
       <PageHeader label="Settings" />
       <Suspense fallback={<PageLoader />}>
-        <div className="bg-secondary/30 rounded-lg p-5">
+        <div className="bg-secondary border rounded-xl p-5">
           <Await promise={promise}>
             {(data) => <AddmissionFeeForm admissionFee={data?.admissionFee} />}
           </Await>
         </div>
       </Suspense>
-    </div>
+    </>
   );
 };
 

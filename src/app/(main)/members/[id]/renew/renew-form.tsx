@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useMemo, useState, useTransition } from "react";
 import { toast } from "sonner";
@@ -20,6 +19,7 @@ import {
 import { CostModifier } from "@/components/cost-modifier";
 import { DatePicker } from "@/components/date-picker";
 import { FormCard } from "@/components/form-card";
+import { LoadingButton } from "@/components/loading-button";
 import {
   Select,
   SelectContent,
@@ -30,8 +30,8 @@ import {
 import { formatDate, getEndDate } from "@/lib/utils";
 import { RenewMemberSchema, RenewMemberValues } from "@/validations";
 import { Member, MembershipPlan } from "@prisma/client";
-import { renewMembershipPlan } from "../../actions";
 import { startOfDay } from "date-fns";
+import { renewMembershipPlan } from "../../actions";
 
 export const RenewForm = ({
   member,
@@ -155,9 +155,9 @@ export const RenewForm = ({
             )}
           />
           <CostModifier value={cost} onChange={setModifiedCost} />
-          <Button disabled={isPending} type="submit">
+          <LoadingButton isLoading={isPending} type="submit">
             Renew
-          </Button>
+          </LoadingButton>
         </FormCard>
       </form>
     </Form>

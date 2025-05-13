@@ -44,7 +44,7 @@ const MembershipPlansPage = async ({
   });
 
   return (
-    <div className="space-y-4">
+    <>
       <PageHeader label="Membership Plans" actionUrl="/membership-plans/new" />
       <Suspense fallback={<PageLoader />}>
         <Await promise={promise}>
@@ -58,7 +58,7 @@ const MembershipPlansPage = async ({
           )}
         </Await>
       </Suspense>
-    </div>
+    </>
   );
 };
 
