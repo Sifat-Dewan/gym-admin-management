@@ -22,7 +22,7 @@ export const formatDate = (date: Date) => {
 };
 
 export const capitalize = (text: string) => {
-  return text.split("")[0].toUpperCase() + text.toLowerCase().slice(1);
+  return text.split("")[0]?.toUpperCase() + text.toLowerCase().slice(1);
 };
 
 export const getEndDate = (startDate: Date, durationInMonth: number = 1) => {
