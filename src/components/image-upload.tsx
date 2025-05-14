@@ -63,7 +63,7 @@ export const ImageUpload = ({
   };
 
   return (
-    <div className="relative size-28 rounded-md border-2 bg-muted border-dashed">
+    <div className="relative size-28 rounded-md border-2 border-dashed bg-muted">
       <input
         id="file"
         type="file"
@@ -79,7 +79,7 @@ export const ImageUpload = ({
           height={112}
           className={cn(
             "pointer-events-none absolute left-0 top-0 size-full object-cover opacity-80",
-            uploadProgress && "opacity-30"
+            uploadProgress && "opacity-30",
           )}
         />
       )}
@@ -102,7 +102,8 @@ export const ImageUpload = ({
             setPreviewImage("");
           }}
           variant="destructive"
-          className="absolute top-0 right-0 size-6"
+          disabled={disabled}
+          className="absolute right-0 top-0 size-6"
           size="icon"
         >
           <X className="size-4" />
@@ -111,7 +112,7 @@ export const ImageUpload = ({
       {!!uploadProgress && (
         <CircularProgressbar
           value={uploadProgress}
-          className="absolute top-1/2 -translate-y-1/2 size-12"
+          className="absolute top-1/2 size-12 -translate-y-1/2"
           styles={buildStyles({
             pathColor: "hsl(var(--primary))",
           })}

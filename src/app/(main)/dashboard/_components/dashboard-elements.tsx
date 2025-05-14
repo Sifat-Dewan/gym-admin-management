@@ -156,7 +156,7 @@ export const DashboardElements = async () => {
 
   return (
     <>
-      <ul className="mt-5 space-y-8">
+      <ul className="space-y-8">
         <li className="p-5 bg-card shadow rounded-lg dark:border">
           <h2 className="font-semibold text-xl">Members</h2>
           <ul className="mt-3 grid xs:grid-cols-2 gap-6 lg:grid-cols-3">

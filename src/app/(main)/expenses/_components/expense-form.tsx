@@ -10,16 +10,11 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 import { FormCard } from "@/components/form-card";
+import { FormInput } from "@/components/form-input";
 import { LoadingButton } from "@/components/loading-button";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+  Form
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { createExpense, updateExpense } from "../actions";
 
 interface ExpenseFormProps {
@@ -43,7 +38,7 @@ export const ExpenseForm = ({ expense }: ExpenseFormProps) => {
       if (expense) {
         updateExpense({
           values,
-          id: expense.id
+          id: expense.id,
         }).then(({ success, error }) => {
           if (success) {
             toast.success(success);
@@ -71,45 +66,24 @@ export const ExpenseForm = ({ expense }: ExpenseFormProps) => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <FormCard>
-          <FormField
+          <FormInput
             control={form.control}
             name="title"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Title</FormLabel>
-                <FormControl>
-                  <Input
-                    autoFocus={!!!expense}
-                    placeholder="Enter the title"
-                    disabled={isPending}
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            autoFocus
+            disabled={isPending}
           />
-          <FormField
+          <FormInput
             control={form.control}
             name="cost"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Cost</FormLabel>
-                <FormControl>
-                  <Input
-                    type="number"
-                    placeholder="Exter the cost"
-                    disabled={isPending}
-                    value={field.value || ""}
-                    onChange={field.onChange}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            type="number"
+            disabled={isPending}
           />
-          <FormError/>
-          <LoadingButton type="submit" isLoading={isPending} className="ml-auto">
+          <FormError />
+          <LoadingButton
+            type="submit"
+            isLoading={isPending}
+            className="ml-auto"
+          >
             {expense ? "Update" : "Create"}
           </LoadingButton>
         </FormCard>

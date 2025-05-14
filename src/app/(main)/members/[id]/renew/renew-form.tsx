@@ -8,25 +8,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+  Form
 } from "@/components/ui/form";
 
 import { CostModifier } from "@/components/cost-modifier";
-import { DatePicker } from "@/components/date-picker";
 import { FormCard } from "@/components/form-card";
+import { FormDatePicker } from "@/components/form-date-picker";
+import { FormSelect } from "@/components/form-select";
 import { LoadingButton } from "@/components/loading-button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { formatDate, getEndDate } from "@/lib/utils";
 import { RenewMemberSchema, RenewMemberValues } from "@/validations";
 import { Member, MembershipPlan } from "@prisma/client";
@@ -42,7 +31,7 @@ export const RenewForm = ({
 }) => {
   const [isPending, startTransition] = useTransition();
   const [modifiedCost, setModifiedCost] = useState<number | undefined>(
-    undefined
+    undefined,
   );
 
   const router = useRouter();
@@ -61,7 +50,7 @@ export const RenewForm = ({
   const membershipPlan = useMemo(() => {
     setModifiedCost(undefined);
     return membershipPlans.find(
-      (plan) => plan.id === membershipPlanId
+      (plan) => plan.id === membershipPlanId,
     ) as MembershipPlan;
   }, [membershipPlans, membershipPlanId]);
 
@@ -104,55 +93,26 @@ export const RenewForm = ({
       >
         <FormCard>
           <div>
-            <FormField
+            <FormDatePicker
               control={form.control}
               name="startDate"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Start Date</FormLabel>
-                  <FormControl>
-                    <DatePicker disabled={isPending} {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              disabled={isPending}
             />
             <p className="text-sm font-medium text-blue-500">
               The Membership will be expired on {formatDate(endDate)}
             </p>
           </div>
-          <FormField
+          <FormSelect
             control={form.control}
             name="membershipPlanId"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Membership Plan</FormLabel>
-                <FormControl>
-                  <Select
-                    disabled={isPending}
-                    defaultValue={field.value}
-                    onValueChange={field.onChange}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Membership Plan" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {membershipPlans?.map(({ name, id, durationInMonth }) => {
-                        const formattedName = `${name} - (${durationInMonth} ${
-                          durationInMonth > 1 ? "Months" : "Month"
-                        })`;
-                        return (
-                          <SelectItem value={id} key={id}>
-                            {formattedName}
-                          </SelectItem>
-                        );
-                      })}
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label="Membership Plan"
+            options={membershipPlans.map(({ name, id, durationInMonth }) => {
+              const formattedName = `${name} - ${durationInMonth > 1 ? "Months" : "Month"}`;
+              return {
+                label: formattedName,
+                value: id,
+              };
+            })}
           />
           <CostModifier value={cost} onChange={setModifiedCost} />
           <LoadingButton isLoading={isPending} type="submit">

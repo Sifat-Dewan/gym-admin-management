@@ -71,7 +71,7 @@ export const updateMember = async ({
   values: MemberValues;
 }) => {
   try {
-    const { name, memberId, phone, gender, age, address } =
+    const { name, memberId, phone, gender, age, address, image } =
       MemberSchema.parse(values);
 
     if (!(await isAdmin())) {
@@ -89,6 +89,7 @@ export const updateMember = async ({
         gender,
         age,
         address,
+        image,
       },
     });
 
