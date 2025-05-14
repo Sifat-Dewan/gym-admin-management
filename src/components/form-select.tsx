@@ -77,7 +77,7 @@ export function FormSelect<T extends FieldValues>({
               </Select>
               <span
                 className={cn(
-                  "absolute left-3 top-1/2 -translate-y-1/2 capitalize text-muted-foreground transition-all peer-focus:top-3 peer-focus:text-sm peer-focus:text-primary",
+                  "pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 select-none capitalize text-muted-foreground transition-all peer-focus:top-3 peer-focus:text-sm peer-focus:text-primary",
                   open && "top-3 text-sm text-primary",
                   field.value && "top-3 text-sm",
                 )}
