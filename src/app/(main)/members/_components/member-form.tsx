@@ -126,7 +126,6 @@ export const MemberForm = ({
 
   form.watch("membershipPlanId");
 
-  console.log(form.getValues("gender"))
 
   return (
     <Form {...form}>
