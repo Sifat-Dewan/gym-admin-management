@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 export const Sidebar = () => {
   const pathname = usePathname();
   return (
-    <aside className="fixed top-[90px] z-20 hidden h-screen min-w-[64px] rounded-xl border-r border-t bg-background xs:block md:min-w-[260px]">
+    <aside className="fixed top-[90px] z-20 hidden h-screen min-w-[64px] rounded-xl rounded-l-none dark:shadow-accent bg-background xs:block md:min-w-[260px]">
       <nav className={cn("mt-5")}>
         <ul>
           {sidebarLinks.map(({ label, icon: Icon, href }) => {

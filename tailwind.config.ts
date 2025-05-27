@@ -12,6 +12,9 @@ export default {
       screens: {
         xs: "500px",
       },
+      boxShadow: {
+        accent: "0 0px 10px hsl(var(--accent) / 0.3)",
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
