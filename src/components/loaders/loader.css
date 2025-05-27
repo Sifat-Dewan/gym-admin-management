@@ -17,7 +17,7 @@
     border-radius: 50%;
   }
   .loader::before {
-    border-color: hsl(var(--primary)) #0000;
+    /* border-color: hsl(var(--primary)) #0000; */
     animation: inherit; 
     animation-duration: .5s;
     animation-direction: reverse;
