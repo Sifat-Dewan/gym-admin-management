@@ -164,7 +164,7 @@ export const DashboardElements = async () => {
               <li
                 key={label}
                 className={cn(
-                  "rounded-lg dark:shadow-accent flex flex-col gap-2 p-5 shadow"
+                  "rounded-lg dark:shadow-accent-md flex flex-col gap-2 p-5 shadow"
                 )}
               >
                 <h3 className="text-lg font-semibold">{label}</h3>
@@ -180,7 +180,7 @@ export const DashboardElements = async () => {
               <li
                 key={label}
                 className={cn(
-                  "rounded-lg dark:shadow-accent flex flex-col gap-2 p-5 shadow"
+                  "rounded-lg dark:shadow-accent-md flex flex-col gap-2 p-5 shadow"
                 )}
               >
                 <h3 className="text-lg font-semibold">{label}</h3>
@@ -196,7 +196,7 @@ export const DashboardElements = async () => {
               <li
                 key={label}
                 className={cn(
-                  "rounded-lg dark:shadow-accent flex flex-col gap-2 p-5 shadow"
+                  "rounded-lg dark:shadow-accent-md flex flex-col gap-2 p-5 shadow"
                 )}
               >
                 <h3 className="text-lg font-semibold">{label}</h3>

@@ -17,7 +17,7 @@ export const Header = () => {
   return (
     <Container
       elem="header"
-      className="sticky border-b top-0 z-50 flex h-[75px] max-w-full items-center gap-4 dark:shadow-accent bg-background"
+      className="sticky dark:shadow-accent-md shadow top-0 z-50 flex h-[75px] max-w-full items-center gap-4 bg-background"
     >
       <Logo className="" />
       <div className="ml-auto flex items-center gap-3">

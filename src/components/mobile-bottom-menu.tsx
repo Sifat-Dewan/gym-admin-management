@@ -11,7 +11,7 @@ export const MobileBottomMenu = () => {
   const sortedSidebarLinks = [...sidebarLinks].sort((a, b) => a.order - b.order);
 
   return (
-    <nav className="fixed inset-x-0 bottom-0 [box-shadow:hsl(var(--accent)/0.5)_5px_-5px_10px] dark:border-t dark:shadow-none xs:hidden">
+    <nav className="fixed inset-x-0 bottom-0 dark:shadow-accent-md [box-shadow:0px_-5px_10px_rgba(0,0,0,0.1)] xs:hidden">
       <ul className="flex items-center justify-between bg-background">
         {sortedSidebarLinks.map(({ href, label, icon: Icon }) => {
           const isActive = pathname === href;
